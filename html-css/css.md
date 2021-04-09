@@ -48,6 +48,9 @@
             display:table;/*也可以是block*/
             clear:both;
         }
+        .clearfix{
+          *zoom:1;/*兼容IE低版本 */
+        }
     ```
 ### flex布局
    - 常用语法
@@ -75,6 +78,11 @@
      - 写比例，如2/1.5，则继承该比例 就是本身font-size的值*比例
      - 写百分比，比如200%，则继承计算出来的值
 
+### 网页视口尺寸
+   - window.screen.height 屏幕高度
+   - window.innerHeight 网页视口高度
+   - document.body.clientHeight body高度
+
 ### 响应式
    - 长度单位
      - px 绝对长度单位，最常用
@@ -82,4 +90,9 @@
      - rem，相对长度单位，相对于根元素，常用于响应式布局
        - rem具有阶梯性
      - vw/vh
-   
+       - window.innerHeight === 100vh
+       - window.innerWidth === 100vw
+     - vmax/vmin
+       - vmax 视口宽和高哪个值大就是哪个
+       - vmin 视口宽和高哪个值小就是哪个
+   - media-query设置根元素html font-size
