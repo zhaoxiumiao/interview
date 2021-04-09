@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            padding: 50px 30px;
+
+            background-color: green;
+            margin-top: 30px;
+            margin-left: 40px;
+            /* margin-top: 1300px; */
+            border: 10px solid red;
+            border-top: 5px solid blue;
+            
+        }
+        section{
+            width: 500px;
+            border: 1px solid red;
+            height: 500px;
+            padding: 5px;
+            /* position: absolute;
+            left: 0;
+            right: 0;
+            top:0;
+            bottom:0;
+            margin: auto; */
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <section>
+        <div id="app"> </div>
+    </section>
+    <script>
+        //Dom对象的宽高、位置属性
+        //clientWidth clientHeight(只读) 只能读出可视宽高 其值是（padding+content）
+        const app = document.getElementById('app')
+        const sec = document.querySelector('section')
+        console.log(app.clientWidth,app.clientHeight);
+        //clientTop and clientLeft(只读)(border的上和左)
+        //专门来读取元素border的宽度和高度
+        console.log(app.clientTop, app.clientLeft);
+        //offsetWidth和offsetHeight(只读)
+        //专门来读取(padding+content+border)宽和高
+        console.log(app.offsetWidth, app.offsetHeight);
+        //offsetLeft和offsetTop(只读) Dom position位置是dom本身border距离offsetParent 的左边和上边
+        //offsetParent是相对点 position:absoulte || position:relative 如果找不到就是body
+        console.log(app.offsetLeft,app.offsetTop);
+        //scrollWidth和scrollHeight(只读)
+        //scrollWidth和 scrollHeight是其内容的真实宽和高如果其内部元素没有超过元素宽高,那取到的值是clientWidth和clientHeight的值
+        console.log(sec.scrollWidth, sec.scrollHeight);
+        //scrollTop和scrollLeft(可读写)
+        //scrollTop是指元素被卷起的高度
+        console.log(document.documentElement.scrollTop); //scrollLeft一般不用
+        //获取元素相对于浏览器窗口的偏移量
+        //方法一: getBoundingClientRect().方向值其值分别是距离浏览器窗口的偏移量
+        console.log(app.getBoundingClientRect().top);
+        //方法二: 借助offsetParent和offsetTop等属性(获取的是相对于窗口左上角的偏移量)
+        console.log(app.offsetTop);
+        //clientX and clientY 事件点击点相对于浏览器左上角的位置
+        sec.onclick = (evt)=>{
+            console.log(evt.clientX,evt.clientY);
+        }
+        //offsetX offsetY
+        app.onclick = (evt)=>{
+            evt.stopPropagation()
+            console.log(evt.offsetX,evt.offsetY);
+        }
+        //pageX pageY
+        
+    </script>
+</body>
+</html>
