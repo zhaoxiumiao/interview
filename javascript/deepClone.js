@@ -10,7 +10,6 @@ const obj1 = {
 const obj2 = deepClone(obj1)
 obj2.address.city = 'shanghai'
 console.log(obj1.address.city);
-console.log(obj2);
 
 
 function deepClone(obj = {}){
