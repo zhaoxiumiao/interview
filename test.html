@@ -18,7 +18,7 @@
             console.log(i);
         }
         
-        for(let i =0,a;i<10; i++){
+        for(let i =0,a;i<10; i++){//每一次循环都是一个块级作用域
             a = document.createElement('a')
             a.innerHTML = i + '<br>'
             a.addEventListener('click',function (e) {
