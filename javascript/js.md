@@ -77,3 +77,15 @@
        - 函数作为参数被传递
        - 函数作为返回值被返回
        - 自由变量的查找，是在函数定义的地方，向上级作用域查找不是在执行的地方！！！
+   - this
+     - 作为普通函数
+       - 这时this指向window
+     - 使用call apply bind
+       - 使用call,apply会直接改变this指向并且直接执行函数
+       - bind则是返回一个改变作用域后的函数
+     - 作为对象方法被调用
+       - this指向这个对象
+     - 在class方法中调用
+       - constructor中的this指向这个constructor本身，方法中的this指向实力对象
+     - 箭头函数
+       - 箭头函数中this是继承自上级作用域的this

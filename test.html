@@ -17,6 +17,16 @@
         function test(i){
             console.log(i);
         }
+        
+        for(let i =0,a;i<10; i++){
+            a = document.createElement('a')
+            a.innerHTML = i + '<br>'
+            a.addEventListener('click',function (e) {
+                e.preventDefault()
+                alert(i)
+            })
+            document.body.appendChild(a)
+        }
     </script>
 </body>
 </html>
