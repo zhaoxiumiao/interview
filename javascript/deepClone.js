@@ -19,7 +19,7 @@ function deepClone(obj = {}){
     }
 
     let result
-    if(obj instanceof Array){
+    if(obj instanceof Array){ //判断obj是否是属于数组类型
         result = []
     }else{
         result = {}

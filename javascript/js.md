@@ -103,3 +103,7 @@
       -  异步不会阻塞代码执行
       -  同步会阻塞代码执行
    - 异步应用场景
+     - 网络请求，如ajax图片加载
+     - 定时任务，如setTimeout
+   - promise
+     - promise是解决callback hell 才出现的
