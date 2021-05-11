@@ -107,3 +107,13 @@
      - 定时任务，如setTimeout
    - promise
      - promise是解决callback hell 才出现的
+### js异步 - 进阶
+   - event loop (事件循环/事件轮询)
+     - event loop 是什么?
+       - js是单线程运行的
+       - 异步要基于回调来实现
+       - event loop 就是异步回调的实现原理
+     - js 如何执行?
+       - 从前到后, 一行一行执行
+       - 如果某一行执行报错,则停止下面代码的执行
+       - 先把同步代码执行完,再执行异步
