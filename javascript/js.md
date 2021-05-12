@@ -139,5 +139,10 @@
          - fulfilled 状态, 会触发后续的then回调函数
          - rejected 状态, 会触发后续的catch 回调函数
        - then和catch改变状态
-         - 
+         - then正常返回resolved, 里面有报错则返回rejected
+         - catch正常返回resolved, 里面有报错则返回rejected
      - then 和 catch 对状态的影响
+   - async/await
+     - 异步回调 callback hell
+     - Promise then catch 链式调用, 但也是基于回调函数
+     - async/await 是同步语法，彻底消灭回调函数
