@@ -124,3 +124,20 @@
        - 如Call Stack 为空（即同步代码执行完）Event Loop 开始工作
        - 轮询查找Callback Queue，如果有则移动到 Call Stack 执行
        - 然后继续轮询查找（永动机一样）
+     - DOM事件和event loop
+       - js是单线程的
+       - 异步(setTimeout, ajax等) 使用回调, 基于event loop
+       - DOM 事件也使用回调, 基于event loop
+   - Promise
+     - 三种状态
+       - pending resolved rejected
+       - pending -> resolved 或 pending -> rejected
+       - 变化不可逆
+     - 状态的表现和变化
+       - 状态的表现
+         - pending 状态, 不会触发then 和 catch
+         - fulfilled 状态, 会触发后续的then回调函数
+         - rejected 状态, 会触发后续的catch 回调函数
+       - then和catch改变状态
+         - 
+     - then 和 catch 对状态的影响
