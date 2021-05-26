@@ -146,3 +146,7 @@
      - 异步回调 callback hell
      - Promise then catch 链式调用, 但也是基于回调函数
      - async/await 是同步语法，彻底消灭回调函数
+   - async/await 和 Promise 的关系
+     - 执行async函数，返回的是Promise对象
+     - await相当于Promise 的 then
+     - try...catch可捕获异常, 代替了Promise的catch
