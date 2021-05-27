@@ -171,5 +171,21 @@
      - 宏任务和微任务的区别
        - 宏任务: DOM 渲染后触发，如setTimeout
        - 微任务: DOM 渲染前触发，如Promise
-       - 
+### js-Web-API-DOM
+   - 从js基础知识到JS Web API
+     - js基础知识，规定语法（ECMA 262 标准）
+     - js Web API, 网页操作的API (W3C标准)
+     - 前者是后者的基础，两者结合才能真正的实际应用
+   - DOM操作（Documnet Object Model）
+   - 知识点
+     - DOM本质
+       - 就是一棵树
+     - DOM节点操作
+     - DOM结构操作
+     - DOM性能
+   - 题目
+     - DOM是哪种数据结构
+     - DOM操作的常用API
+     - attr和property的区别
+     - 一次性插入多个DOM节点，考虑性能
      
