@@ -150,3 +150,26 @@
      - 执行async函数，返回的是Promise对象
      - await相当于Promise 的 then
      - try...catch可捕获异常, 代替了Promise的catch
+   - 异步的本质
+     - js还是单线程,还是异步，还是基于event loop
+     - async/await 只是一个语法糖，但是这个糖真香
+   - for of
+     - 用于遍历异步操作
+   - 宏任务 macroTask 和微任务 microTask
+     - 什么是宏任务，什么是微任务
+       - 宏任务:setTimeout, setInterval, Ajax, DOM事件
+       - 微任务: Promise async/await
+       - 微任务执行时机比宏任务要早 
+     - event loop和 DOM的渲染
+       - js是单线程，而且和DOM渲染是公用一个线程
+       - js执行的时候，需要留一些时机供DOM渲染
+       - 回顾event loop过程（增加DOM渲染时机）
+         - call Stack 空闲时 尝试DOM渲染 再次触发EventLoop
+         - 每次Call Stack 清空（即每次轮询结束）, 即同步任务执行完
+         - 都是DOM重新渲染的机会，DOM结构如有改变则重新渲染
+         - 然后再去触发下一次Event Loop
+     - 宏任务和微任务的区别
+       - 宏任务: DOM 渲染后触发，如setTimeout
+       - 微任务: DOM 渲染前触发，如Promise
+       - 
+     
