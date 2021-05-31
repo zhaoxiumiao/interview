@@ -179,8 +179,22 @@
    - DOM操作（Documnet Object Model）
    - 知识点
      - DOM本质
-       - 就是一棵树
+       - html 就是特定的标签结构是和xml一样的
+       - 本质就是一个树结构
      - DOM节点操作
+       - 获取DOM节点
+         - document.getElementById('id名')
+         - document.getElementsByTagName('标签名') 集合
+         - document.getElementsByClassName('类名') 集合
+         - document.querySelectorAll('') 集合
+       - attribute
+         - 对dom节点属性进行修改
+         - 修改对象属性,不会体现到html结构中
+       - property
+         - 修改html属性,会改变html结构
+         - 通过js属性的方式来改变页面渲染和结构的一种形式
+         - 元素的js变量做的修改
+         - 都有可能引起DOM重新渲染
      - DOM结构操作
      - DOM性能
    - 题目
