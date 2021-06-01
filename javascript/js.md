@@ -249,9 +249,154 @@
      - 事件绑定
        - addEventListener('事件',函数)
      - 事件冒泡
+       - 
      - 事件代理
+       - 事件代理是通过事件冒泡进行事件代理
+       - 代码简洁
+       - 减少浏览器内存占用
+       - 但是, 不要滥用
    - 题目
      - 编写一个通用的事件监听函数
+       - 看代码
      - 描述事件冒泡流程
+       - 基于DOM树形结构
+       - 事件会顺着触发元素往上冒泡
+       - 应用场景:事件代理
      - 无限下拉的图标列表，如何监听每个图片的点击
+       - 事件代理
+       - 用e.target获取触发元素
+       - 用matches 来判断是否是触发元素
+   - ajax
+   - 题目
+     - 手写一个简易的ajax
+     - 跨域的常用实现方式
+   - 知识点
+     - XMLHttpRequest
+     - 状态码
+       - readyState status
+     - 跨域:同源策略, 跨域解决方案
+       - 什么是跨域(同源策略)
+         - ajax请求时,浏览器要求当前网页和server必须同源(安全)
+         - 同源: 协议 域名 端口, 三者必须一致
+         - 加载图片css js 可无视同源策略
+       - jsonp
+         - `<script>` 可以绕过跨域限制
+         - 服务器可以任意的动态拼接数据返回
+         - 所以, `<script>`就可以获得跨域的数据, 只要服务端愿意返回
+       - CORS (服务端支持)
+       - 一些常用的ajax请求工具 axios jQuery fetch
+   - 存储
+   - 题目
+     - 描述 cookie localStorage和sessionStorage区别
+       - 容量
+       - API易用性
+       - 是否跟随http请求发送出去
+   - 知识点
+     - cookie
+       - 本身用于浏览器和server 通讯
+       - 被"借用"到本地存储来 
+       - document.cookie = 'a=123;' 来修改
+       - cookie缺点
+         - 最多只能存4KB
+         - http请求时需要发送到服务端, 增加请求数据量
+         - 只能用document.cookie = `...` 来进行修改,太过简陋
+     - localStorage sessionStorage
+       - HTML5 专门为存储而设计, 最大可存5M
+       - API简易易用setItem getItem
+       - 不会随着http求情被发送出去
+       - localStorage 数据会永久存储,除非代码或手动删除
+       - sessionStorage 数据只存在于当前会话, 浏览器关闭则清空
+       - 一般用localStorage 会更多一些
+### http面试题
+   - 前端开发界面
+   - 需要调用后端的接口,提交/获取 数据 --- http协议
+   - 要求事先掌握好ajax
+   - 题目
+     - http常见的状态码有哪些?
+     - http常见的header有哪些
+     - 什么是Restful API
+     - 描述一下http的缓存机制(重要)
+   - 知识点
+     - 状态码
+       - 状态码分类
+         - 1xx 服务器收到请求
+         - 2xx 请求成功, 如200
+         - 3xx 重定向, 如302 
+         - 4xx 客户端错误, 如404
+         - 5xx 服务端错误, 如500
+       - 常见的状态码
+         - 200成功
+         - 301永久重定向(配合 location(新地址) , 浏览器自动处理)
+         - 302 临时重定向(配合 location, 浏览器自动处理)
+         - 304 资源未被修改
+         - 404 资源未被找到
+         - 403 没有权限
+         - 500 服务器错误
+         - 504 网关超时
+       - 关于协议和规范
+         - 就是一个约定
+         - 要求大家都跟着执行
+         - 不要违反规范,例如IE浏览器
+     - http methods
+       - 传统的 methods
+         - get 获取服务器的数据
+         - post 向服务器提交数据
+         - 简单的网页功能, 就这两个操作
+       - 现在的 methods
+         - get 获取数据
+         - post 新建数据
+         - path/put 更新数据
+         - delete 删除数据
+       - Restful API
+         - 一种新的API设计方法(早已推广使用)
+         - 传统的API设计: 把每个url 当做一个功能
+         - Restful API设计: 把每个URL 当做一个唯一的资源
+         - 如何设计成一个资源?
+           - 尽量不用url参数
+             - 传统API设计: /api/list?pageIndex=2
+             - Restful API 设计: /api/list/2
+           - 用 method 表示操作类型
+             - 传统API设计
+               - post请求 /api/create-blog
+               - post请求 /api/update-blog?id=100
+               - get请求 /api/get-blog?id=100
+             - Restful API设计
+               - post 请求 /api/blog
+               - patch 请求 /api/blog/100
+               - get 请求 /api/blog/100
+     - http headers
+       - 常见的 Request Headers
+       - 常见的 Response Headers
+       - Request Headers
+         - Accept 浏览器可接收的数据格式
+         - Accept-Encoding 浏览器可接收的压缩算法, 如gzip
+         - Accept-Languange 浏览器可接收的语言, 如zh-CN
+         - Connection: keep-alive 一次TCP连接重复使用
+         - cookie
+         - Host 域名
+         - User-Agent (简称UA) 浏览器信息
+         - Content-type 发送数据的格式, 如application/json
+       - Response Headers
+         - Content-type 返回数据的格式, 如application/json
+         - Content-length 返回数据的大小, 多少字节
+         - Content-Encoding 返回的数据压缩算法, 如gzip
+         - Set-Cookie 服务端用Set-Cookie来改cookie
+       - 可以自定义header
+       - 缓存相关的header
+         - Cache-control Expires
+         - Last-Modified If-Modified-Since
+         - Etag If-None-Match
+       - http缓存
+         - 关于缓存的介绍
+           - 什么是缓存?
+           - 为什么需要缓存?
+             - 因为网络请求的问题
+             - 就是为了减少网络请求
+           - 哪些资源可以被缓存? -- 静态资源(js css img)
+         - http 缓存的策略(强制缓存 + 协商缓存)
+           - http缓存-强制缓存
+             - 
+         - 刷新操作方式, 对缓存的影响
+
+
      
