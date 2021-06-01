@@ -196,10 +196,62 @@
          - 元素的js变量做的修改
          - 都有可能引起DOM重新渲染
      - DOM结构操作
+       - 新建节点 createElement('标签名')
+       - 插入节点 appendChild()
+       - 移动节点 appendChild(已有的标签名)
+       - 获取父元素 parentNode
+       - 获取子元素列表 div1.childNodes nodeType是普通标签
+       - 删除节点 removeChild
      - DOM性能
+       - DOM操作非常"昂贵", 避免频繁的DOM操作
+       - 对DOM查询做的缓存
+       - 将频繁操作改为一次性操作
    - 题目
      - DOM是哪种数据结构
+       - 树(DOM树)
      - DOM操作的常用API
+       - DOM节点的操作
+       - DOM结构的操作
+       - attribute property
      - attr和property的区别
+       - property: 修改对象属性,不会体现到html结构中
+       - attribute: 修改html属性，会改变html结构
+       - 两者都可能会引起DOM重新渲染
      - 一次性插入多个DOM节点，考虑性能
+       - 可以使用createDocumentFragment文档片段
+   - BOM操作(Browser Object Model)
+   - 知识点
+     - navigator
+       - 浏览器信息
+       - 通过 navigator.userAgent来拿到浏览器信息
+     - screen
+       - 屏幕信息
+       - screen.width 屏幕宽度
+       - screen.height 屏幕高度
+     - location
+       - 地址信息
+       - location.href就是整个网址
+       - location.protocol 是协议
+       - location.host 域名
+       - location.search 查询参数
+       - location.hash 哈希去井号后边内容
+       - location.pathname 路由
+     - history
+       - 前进后退
+       - history.back() 后退
+       - history.forward() 前进
+   - 题目
+     - 如何识别浏览器的类型
+       - 通过 navigator.userAgent来拿到浏览器信息
+     - 分析拆解url各个部分
+   - 事件
+   - 知识点
+     - 事件绑定
+       - addEventListener('事件',函数)
+     - 事件冒泡
+     - 事件代理
+   - 题目
+     - 编写一个通用的事件监听函数
+     - 描述事件冒泡流程
+     - 无限下拉的图标列表，如何监听每个图片的点击
      
