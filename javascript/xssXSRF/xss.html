@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <p>一段文字1</p>
+    <p>一段文字2</p>
+    <p>一段文字3</p>
+    
+    
+    <script>
+    // apply function filterXSS in the same way
+    var html = filterXSS('<script>alert(document.cookie)'+'</scr'+'ipt>');
+    alert(html);
+    </script>
+</body>
+</html>

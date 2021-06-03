@@ -313,7 +313,7 @@
    - 要求事先掌握好ajax
    - 题目
      - http常见的状态码有哪些?
-     - http常见的header有哪些
+     - http常见的header有哪些?
      - 什么是Restful API
      - 描述一下http的缓存机制(重要)
    - 知识点
@@ -376,27 +376,208 @@
          - Host 域名
          - User-Agent (简称UA) 浏览器信息
          - Content-type 发送数据的格式, 如application/json
+         - If-Modified-Since 值是Modified 用来校验服务器缓存策略
+         - if-None-Match 值是Etag
        - Response Headers
          - Content-type 返回数据的格式, 如application/json
          - Content-length 返回数据的大小, 多少字节
          - Content-Encoding 返回的数据压缩算法, 如gzip
+         - Cache-control Expires 是本地强制缓存策略
+         - Last-Modified 资源的最后修改时间
          - Set-Cookie 服务端用Set-Cookie来改cookie
+         - Etag 资源的唯一标识字符串
        - 可以自定义header
        - 缓存相关的header
          - Cache-control Expires
+           - 控制强制缓存的时间
+           - cache-control: max-age=231131(单位是秒)
+           - 值
+             - max-age 最大时间
+             - no-cache 不本地强制缓存
+             - no-store 不用本地强制缓存,不用服务端缓存
+             - private 只能最终用户做缓存
+             - public  中间路由和代理做缓存
+           - Expires
+             - 同在 Response Headers 中
+             - 同为控制缓存过期
+             - 已被 Cache-Control 代替
          - Last-Modified If-Modified-Since
+           - Last-modified 资源的最后修改时间
+           - If-Modified-Since Last-modified 
          - Etag If-None-Match
+           - Etag 资源的唯一标识(一个字符串, 类似人类的指纹)
+           - if-None-Match Etag
+         - Last-Modified 和Etag
+           - 会使用Etag
+           - Last-Modified 只能精确到秒级
+           - 如果资源被重复生成,而内容不变,则Etag更精确
        - http缓存
          - 关于缓存的介绍
            - 什么是缓存?
+             - 把一些没有必要更新的资源进行缓存减少重复的请求
            - 为什么需要缓存?
              - 因为网络请求的问题
              - 就是为了减少网络请求
            - 哪些资源可以被缓存? -- 静态资源(js css img)
          - http 缓存的策略(强制缓存 + 协商缓存)
            - http缓存-强制缓存
-             - 
+             - 浏览器做的本地缓存
+           - http-协商缓存
+             - 服务端缓存策略
+             - 服务器判断客户端资源,是否和服务端资源一样
+             - 一致则返回304, 否则返回200和最新的资源
+             - 根据资源标识进行判断
          - 刷新操作方式, 对缓存的影响
-
+           - 三种刷新操作
+             - 正常操作: 地址栏输入url , 跳转链接, 前进后退等
+               - 强制缓存有效, 协商缓存有效
+             - 手动刷新: f5, 点击刷新按钮, 右击菜单刷新
+               - 强制缓存失效, 协商缓存有效
+             - 强制刷新: ctrl + F5
+               - 强制缓存失效, 协商缓存失效
+         - 小结
+           - 强制缓存 Cache-control
+           - 协商缓存 Last-Modified 和 Etag, 304状态码
+           - 完整的流程图
+         - http面试-总结
+           - http状态码
+           - http method
+           - Restful API
+           - http headers
+           - http 缓存策略
+### 开发环境
+   - git
+     - 常用git 命令
+       - git add
+       - git checkout xxx
+       - git commit -m "xxx"
+       - git push origin master
+       - git pull origin master
+       - git branch
+       - git checkout -b xxx / git checkout xxx
+       - git merge xxx
+       - git stash 暂存修改 git stash pop 将暂存的修改给推出来
+       - git rest  git reset --hard 1094a
+   - chrome-调试工具
+     - Elements 页面结构
+     - Console 打印工具
+     - Sources debugger用的
+     - Network 资源加载查看
+     - Application 操作本地存储 session 
+   - 抓包
+     - 移动端h5页, 查看网络请求,需要用工具抓包
+     - windows 一般用 fiddler
+     - Mac OS 一般用 charles
+     - 手机和电脑连同一个局域网
+     - 将手机代理到电脑上
+     - 手机浏览网页, 即可抓包
+     - 查看网络请求
+     - 网址代理
+     - https
+   - webpack babel
+     - ES6模块化, 浏览器暂不支持
+     - ES6语法, 浏览器并不完全支持
+     - 压缩代码, 整合代码, 已让网页加载更快
+   - linux 常用命令
+     - 线上机器一般都是linux
+     - ls 查看文件
+     - mkdir 创建文件夹
+     - rm -rf xxx 删除文件夹
+     - cd 进入文件
+     - mv xxx xxx 更改文件名
+     - mv xxx ../xxx 移动文件
+     - cp xxx xxx 拷贝文件
+     - vim 文件名 vim编辑器
+     - cat 文件名 看文件内容
+     - header 看文件前几行
+     - tail 末尾几行
+     - grep "关键字" 文件名 查关键字
+### 运行环境
+   - 运行环境即浏览器(server端有 nodejs)
+   - 下载网页代码, 渲染出页面, 期间会执行若干js
+   - 保证代码在浏览器中: 稳定且高效
+   - 题目
+     - 从输入url 到渲染出页面的整个过程
+       - 下载资源
+       - 渲染页面
+     - window.onload 和 DOMContentLoaded的区别
+        ```js
+        window.addEventListener('load', function(){
+          //页面的全部资源加载完才会执行, 包括图片 视频等
+        })
+        document.addEventListener('DOMContentLoaded', function(){
+          //DOM 渲染完即可执行, 此时图片视频可能还没有加载完
+        })
+        ``` 
+   - 知识点
+     - 网页加载过程
+       - 加载资源的形式
+         - html 代码
+         - 媒体文件,如图片,视频等
+         - javascript css
+       - 加载资源的过程
+         - DNS解析: 域名 -> IP地址
+         - 浏览器根据IP地址向服务器发起http请求
+         - 服务器处理http请求, 并返回给浏览器
+       - 渲染页面的过程
+         - 根据HTML代码生成DOM Tree
+         - 根据CSS代码生成CSSOM
+         - 将DOM Tree 和CSSOM整合形成 Render Tree
+         - 根据Render Tree 渲染页面
+         - 遇到`<script>` 则暂停渲染,优先加载并执行js代码,完成再继续
+         - 直至把Render Tree 渲染完成
+     - 性能优化
+       - 介绍
+         - 是一个综合性的问题,没有标准答案,但要求尽量全面.
+         - 某些细节问题可能会单独提问: 手写防抖 节流
+         - 只关注核心点, 针对面试
+       - 原则
+         - 多使用内存 缓存或者其他方法
+         - 减少CPU计算量, 减少网络加载耗时
+         - (适用于所有编程的性能优化 ---- 空间换时间)
+       - 从何入手
+         - 让加载更快
+           - 减少资源体积: 压缩代码
+           - 减少访问次数: 合并代码, SSR服务器端渲染, 缓存
+           - 使用更快的网络: CDN
+             - 专门做静态服务的
+         - 让渲染更快
+           - CSS放在head, JS放在body最下面
+           - 尽早开始执行JS, 用DOMContentLoaded触发
+           - 懒加载(图片懒加载, 上划加载更多)
+           - 对DOM查询进行缓存
+           - 频繁的DOM操作, 合并到一起插入DOM结构
+           - 节流throttle 防抖debounce
+             - 防抖debounce
+               - 监听一个输入框,文字变化后触发 change事件
+               - 直接使用keyup事件,则会频繁触发change事件
+               - 防抖: 用户输入结束或者暂停时,才会触发change事件
+             - 节流throttle
+               - 拖拽一个元素时, 要随时拿到该元素被拖拽的位置
+               - 直接用drag事件, 则会频发触发, 很容易导致卡顿
+               - 节流: 无论拖拽速度多快, 都会每隔100ms 触发一次 
+     - 安全
+       - 问题: 常见的web前端攻击方式有哪些
+         - XSS 跨站请求攻击
+           - 一个博客网站, 我发表一篇博客, 其中嵌入`<script>` 脚本
+           - 脚本内容: 获取cookie, 发送到我的服务器(服务器配合跨域)
+           - 发布这篇博客,有人查看它,我轻松收割访问者的cookie
+         - XSRF 跨站请求伪造
+           - 你正在购物, 看中了某个商品,商品id是100
+           - 付费接口是xxx.com/pay?id=100, 但是没有任何验证
+           - 我是攻击者,我看中了一个商品,id是200
+           - 我向你发送一封电子邮件, 邮件标题很吸引人
+           - 但是邮件正文隐藏着`<img src=xxx.com/pay?id=200 />`
+           - 你一查看邮件,就帮我购买了id是200的商品
+### 总结
+   - 简历
+     - 简洁明了, 突出个人技能和项目经验
+     - 不要造假, 保证能力上的真实性(斟酌用词, 如精通xxx)
+   - 面试过程中注意事项
+     - 如何看待加班: 想借钱, 救急不救穷
+     - 不要挑战面试官, 反考面试官
+     - 学会给面试官惊喜, 证明你能想到更多, 做的更多, 但不要太多
+     - 遇到不会的问题, 说出你知道的部分即可, 但别岔开话题
+     - 谈谈你的缺点: 说一下你最近在学什么即可
 
      
