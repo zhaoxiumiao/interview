@@ -9,7 +9,6 @@ function bindEvent(elem, type, selector, fn){
         fn = selector
         selector = null
     }
-    console.log(arguments);
     elem.addEventListener(type, event => {
         const target = event.target
         if(selector) {
